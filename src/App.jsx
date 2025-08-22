@@ -22,7 +22,7 @@ function App() {
             price: 99.99,
             active: false,
             quantity: 1, 
-            isInBag: true
+            isInBag: false
         },
         {
             id: 3, 
@@ -94,15 +94,20 @@ function App() {
 
     return ( 
         <>
-            <section className="Items">
-                <h4>Jersey Shop Made with React JS</h4>
+            <section className="items">
+                <h4>{ shopName }</h4>
                 {/* must always add a key for each Item when mapping through a list as done below */}
                 {items.map(item => 
-                    <Item item={item} key={item.id}/>
+                    <Item 
+                        selectProduct = {(id) => alert(`clicked product ${id}`)}
+                        item={item} 
+                        key={item.id} 
+
+                    />
                 )}
             </section>
             
-            {itemsInBag.length > 0 && <OrderDetails /> }
+            {itemsInBag.length > 0 && <OrderDetails itemsInBag={itemsInBag}/> }
         </>
     );
 }
